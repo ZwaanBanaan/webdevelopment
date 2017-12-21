@@ -1,57 +1,155 @@
 <!DOCTYPE html>
-<html ng-app="todoApp">
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
 
-    <head>
-        <title>Portfolio</title>
-        <script src="angular.min.js"></script>
-        <link rel="stylesheet" href="bootstrap.css"/>
-        <link rel="stylesheet" href="bootstrap-theme.css"/>
+<style>
+        * {
+            box-sizing: border-box;
+        }
 
-        <script>
+
+ ul.menu{
+	overflow: hidden;
+	padding: 0;
+	margin: -20px;
+	background: #4D4D4D;
+}
+
+ul.menu li{
+	display: inline-block;
+}
+
+.title{
+    background: rgb(27, 27, 27);
+    padding: 13px 20px;
+    margin:-20px;
+    font-family: Arial;
+    font-size: 20px;
+    color: #fff;
+}
+
+ul.menu li a{
+	display: block;
+	padding: 13px 20px;
+	text-decoration: none;
+	color: #fff;
+}
+
+ul.menu li a:hover{
+	background: rgb(0, 195, 255);
+}
+        
+        body {
+            background-color: #ffffff;
+            padding: 10px;
+            font-family: Arial;
+        }
+        
+        /* Center website */
+        .main {
+            max-width: 1000px;
+            margin: auto;
+        }
+        
+        h1 {
+            font-size: 20px;
+            word-break: break-all;
+        }
+        
+        .row {
+            margin: 8px -16px;
+        }
+        
+        /* Add padding BETWEEN each column */
+        .row,
+        .row > .column {
+            padding: 8px;
+        }
+        
+        /* Create four equal columns that floats next to each other */
+        .column {
+            float: left;
+            width: 25%;
+        }
+        
+        /* Clear floats after rows */ 
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+        
+        /* Content */
+        .content {
+            background-color: rgb(255, 255, 255);
+            padding: 0px;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        }
+
+        .content:hover{
+            background-color: rgb(0, 174, 255);
             
-            var model = {
-                user: "Adam",
-                items:[
-                    {action: "Buy Flowers", done: false},
-                    {action: "Get Shoes", done: false},
-                    {action: "Collect Tickets", done: false},
-                    {action: "Call Joe", done: false}]
+        }
+
+        .contenttext {
+            padding: 10px;
+            margin-top: -10px;
+           
+        }
+
+        .contentimage{
+            border-radius: 5px 5px 0px 0px;
+        }
+        
+        /* Responsive layout - makes a two column-layout instead of four columns */
+        @media (max-width: 900px) {
+            .column {
+                width: 50%;
             }
-            
-            var todoApp = angular.module("todoApp",[]);
+        }
+        
+        /* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+        @media (max-width: 600px) {
+            .column {
+                width: 100%;
+            }
+        }
+        </style>
+
+<body ng-app="myApp">
 
 
-        </script>
+<div class="title"><p>Sergej Zwaan Design</p></div>    
+<ul class="menu"> 
+        <li><a href="#/!">Work</a></li>
+            <li><a href="#!skills">Skills</a></li>
+                <li><a href="#!about">About</a></li>
+                    <li><a href="#!contact">Contact</a></li>
+</ul>
+</br>
+</br>
+<div ng-view></div>
 
-    </head>
+<script>
+var app = angular.module("myApp", ["ngRoute"]);
+app.config(function($routeProvider) {
+    $routeProvider
+    .when("/", {
+        templateUrl : "work.htm"
+    })
+    .when("/skills", {
+        templateUrl : "skills.htm"
+    })
+    .when("/about", {
+        templateUrl : "about.htm"
+    })
+    .when("/contact", {
+        templateUrl : "contact.htm"
+    });
+});
+</script>
 
-    <body>
-        <div class="page-header">
-            <h1>My TODO List</h1>
-        </div>
-
-        <div class="panel">
-            <div class="input-group">
-                <input class="form-control" />
-                <span class="input-group-btn">
-                    <button class="btn btn-default">Add</button>
-                </span>
-            </div>
-
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th>Description</th>
-                        <th>Done</th>
-                    </tr>
-                </thead>
-                <tbody>
-
-                </tbody>
-
-            </table>
-        </div>
-
-    </body>
-
+</body>
 </html>

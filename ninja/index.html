@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <title>CanvasNinja</title>
+
+    <style>
+        canvas {
+            border: #333 1px solid;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div id="container">
+        <canvas id="myCanvas" width="550px" height="550px"></canvas>
+    </div>
+
+    <script>
+
+        var canvas = document.querySelector("#myCanvas");
+        var context = canvas.getContext("2d");
+
+        var myImage = new Image();
+        myImage.src = "https://www.kirupa.com/stuff/sprites_blue.png";
+        myImage.addEventListener("load", loadImage, false);
+
+        function loadImage(e){
+            animate();
+        }
+
+        var shift = 0;
+        var frameWidth = 300;
+        var frameHeight = 300;
+        var totalFrames = 24;
+        var currentFrame = 0;
+
+        function animate(){
+            context.clearRect(120,25,300,300);
+
+            context.drawImage(myImage, shift, 0, frameWidth, frameHeight, 120,25, frameWidth, frameHeight);
+            shift += frameWidth + 1;
+
+            if(currentFrame == totalFrames){
+                shift = 0;
+                currentFrame = 0;
+            }
+
+            currentFrame++;
+            requestAnimationFrame(animate);
+        }
+       
+       
+       
+
+    </script>
+
+    
+
+</body>
+
+
+</html>
